@@ -28,7 +28,7 @@ public abstract class AbstractFacebookObject {
         mName = name;
 
         if (null != account) {
-            mAccountId = account.getId();
+//            mAccountId = account.getId();
         }
     }
 
@@ -37,7 +37,7 @@ public abstract class AbstractFacebookObject {
         mName = object.getString("name");
 
         if (null != account) {
-            mAccountId = account.getId();
+//            mAccountId = account.getId();
         }
     }
 

@@ -3,20 +3,13 @@ package com.mogal.prbirthdays;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
-import android.content.pm.Signature;
 import android.os.Bundle;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,6 +24,7 @@ import com.facebook.android.Facebook.DialogListener;
 import com.facebook.android.FacebookError;
 import com.mogal.prbirthdays.facebook.Session;
 import com.mogal.prbirthdays.helpers.Constants;
+import com.mogal.prbirthdays.helpers.DataBaseWrapper;
 
 public class LoginActivity extends Activity implements View.OnClickListener {
 
@@ -108,25 +102,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 		} else if (Constants.INTENT_LOGOUT.equals(action)) {
 			logoutOfFacebook();
 		}
-
-		try {
-			PackageInfo info = getPackageManager().getPackageInfo(
-					"com.mogal.prbirthdays", PackageManager.GET_SIGNATURES);
-			for (Signature signature : info.signatures) {
-				MessageDigest md = MessageDigest.getInstance("SHA");
-				md.update(signature.toByteArray());
-				
-				mMessageTv.setText(Base64.encodeToString(md.digest(), Base64.DEFAULT));
-				Log.e("KeyHash:",
-						Base64.encodeToString(md.digest(), Base64.DEFAULT));
-			}
-		} catch (NameNotFoundException e) {
-			Log.e("KeyHashError:", e.getMessage());
-			mMessageTv.setText(e.getMessage());
-		} catch (NoSuchAlgorithmException e) {
-			Log.e("KeyHashError:", e.getMessage());
-			mMessageTv.setText(e.getMessage());
-		}
 	}
 
 	@Override
@@ -138,30 +113,29 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 	private void loginToFacebook() {
 		mFacebook = new Facebook(Constants.FACEBOOK_APP_ID);
 		mFacebook.authorize(this, Constants.FACEBOOK_PERMISSIONS,
-		/*
-		 * BuildConfig.DEBUG ? Facebook.FORCE_DIALOG_AUTH :
-		 */REQUEST_FACEBOOK_SSO, new DialogListener() {
-			@Override
-			public void onFacebookError(FacebookError arg0) {
-				Log.e("onFacebookError Login", arg0.getMessage());
-			}
+				BuildConfig.DEBUG ? Facebook.FORCE_DIALOG_AUTH : REQUEST_FACEBOOK_SSO, 
+				new DialogListener() {
+					@Override
+					public void onFacebookError(FacebookError arg0) {
+						Log.e("onFacebookError Login", arg0.getMessage());
+					}
 
-			@Override
-			public void onError(DialogError arg0) {
-				Log.e("onError Login", arg0.getMessage());
-			}
+					@Override
+					public void onError(DialogError arg0) {
+						Log.e("onError Login", arg0.getMessage());
+					}
 
-			@Override
-			public void onComplete(Bundle arg0) {
-				saveFacebookSession();
-			}
+					@Override
+					public void onComplete(Bundle arg0) {
+						saveFacebookSession();
+					}
 
-			@Override
-			public void onCancel() {
-				Log.e("onCancel Login", "");
-			}
+					@Override
+					public void onCancel() {
+						Log.e("onCancel Login", "");
+					}
 
-		});
+				});
 	}
 
 	private void logoutOfFacebook() {
@@ -201,11 +175,16 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 			public void onComplete(String response, Object state) {
 				try {
 					JSONObject object = new JSONObject(response);
-					String id = object.getString("id");
+					String facebookId = object.getString("id");
 					String name = object.getString("name");
-
-					final Session session = new Session(mFacebook, id, name);
+					
+					final Session session = new Session(mFacebook, facebookId, name);
 					session.save(getApplicationContext());
+					
+					// Save the new account in the DB
+					DataBaseWrapper.createAccount(getApplicationContext(),
+							facebookId, name, mFacebook.getAccessToken(),
+							mFacebook.getAccessExpires());
 
 					setResult(RESULT_OK);
 

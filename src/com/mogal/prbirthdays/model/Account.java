@@ -4,11 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.concurrent.Callable;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.content.Context;
-import android.text.TextUtils;
 import android.util.Log;
 
 import com.facebook.android.Facebook;
@@ -21,53 +17,94 @@ import com.mogal.prbirthdays.facebook.Session;
 import com.mogal.prbirthdays.helpers.Constants;
 import com.mogal.prbirthdays.helpers.DatabaseHelper;
 
-@DatabaseTable(tableName = "account")
-public class Account extends AbstractFacebookObject {
+@DatabaseTable(tableName = Account.TABLE_NAME)
+public class Account {
 
-	static final String LOG_TAG = "Account";
-
+	private static final String TAG = Account.class.getName();
+	public static final String TABLE_NAME = "Accounts";
+	public static final String FIELD_ID = "id";
+	public static final String FIELD_FACEBOOK_ID = "facebook_id";
+    public static final String FIELD_NAME = "name";
 	public static final String FIELD_ACCESS_TOKEN = "access_token";
 	public static final String FIELD_ACCESS_EXPIRES = "access_expires";
 	public static final String FIELD_MAIN_ACCOUNT = "is_main_account";
 
+	@DatabaseField(generatedId = true, columnName = FIELD_ID)
+	private long mId;
+	@DatabaseField(columnName = FIELD_FACEBOOK_ID)
+	private String mFacebookId;
+    @DatabaseField(columnName = FIELD_NAME)
+    private String mName;
 	@DatabaseField(columnName = FIELD_ACCESS_TOKEN)
 	private String mAccessToken;
 	@DatabaseField(columnName = FIELD_ACCESS_EXPIRES)
 	private long mAccessExpires;
-	@DatabaseField(columnName = FIELD_MAIN_ACCOUNT)
-	private boolean mIsMainAccount;
 
 	Account() {
 		// No-ARG for Ormlite
 	}
 
-	private Account(String id, String name, String accessToken,
-			long accessExpires) {
-		super(id, name, null);
+	public Account(String facebookId, String name, String accessToken, long accessExpires) {
+		mFacebookId = facebookId;
+		mName = name;
 		mAccessToken = accessToken;
 		mAccessExpires = accessExpires;
-		mIsMainAccount = true;
 	}
 
-	public Account(JSONObject object) throws JSONException {
-		super(object, null);
-		mAccessToken = object.optString("access_token", null);
-		mAccessExpires = 0;
-		mIsMainAccount = false;
+//	public Account(JSONObject object) throws JSONException {
+//		this(object.getString("id"))
+//		super(object, null);
+//        mId = object.getString("id");
+//        mName = object.getString("name");
+//		mAccessToken = object.optString("access_token", null);
+//		mAccessExpires = 0;
+//		mIsMainAccount = false;
+//	}
+
+	public long getmId() {
+		return mId;
 	}
 
-	public String getAccessToken() {
+	public void setmId(long mId) {
+		this.mId = mId;
+	}
+
+	public String getmFacebookId() {
+		return mFacebookId;
+	}
+
+	public void setmFacebookId(String mFacebookId) {
+		this.mFacebookId = mFacebookId;
+	}
+
+	public String getmName() {
+		return mName;
+	}
+
+	public void setmName(String mName) {
+		this.mName = mName;
+	}
+
+	public String getmAccessToken() {
 		return mAccessToken;
 	}
 
-	public boolean isMainAccount() {
-		return mIsMainAccount;
+	public void setmAccessToken(String mAccessToken) {
+		this.mAccessToken = mAccessToken;
 	}
 
-	public boolean hasAccessToken() {
-		return !TextUtils.isEmpty(mAccessToken);
+	public long getmAccessExpires() {
+		return mAccessExpires;
 	}
 
+	public void setmAccessExpires(long mAccessExpires) {
+		this.mAccessExpires = mAccessExpires;
+	}
+	
+	// //////////////////////////////////////////////////////////////////////////////////
+	// Those functions are from other project. probably we won't need them all
+	// /////////////////////////////////////////////////////////////////////////////////
+	
 	public static Account getMeFromSession(Session session) {
 		if (null != session) {
 			final Facebook fb = session.getFb();
@@ -124,13 +161,13 @@ public class Account extends AbstractFacebookObject {
 					// Delete all
 					int removed = dao.delete(dao.deleteBuilder().prepare());
 
-					Log.d(LOG_TAG, "Deleted " + removed + " from database");
+					Log.d(TAG, "Deleted " + removed + " from database");
 
 					for (Account item : items) {
 						dao.create(item);
 					}
 
-					Log.d(LOG_TAG, "Inserted " + items.size()
+					Log.d(TAG, "Inserted " + items.size()
 							+ " into database");
 
 					return null;
@@ -142,5 +179,8 @@ public class Account extends AbstractFacebookObject {
 			OpenHelperManager.releaseHelper();
 		}
 	}
-
+	
+	// //////////////////////////////////////////////////////////////////////////////////
+	// Those functions are from other project. probably we won't need them all
+	// /////////////////////////////////////////////////////////////////////////////////
 }
