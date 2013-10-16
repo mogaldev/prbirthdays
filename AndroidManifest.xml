@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.mogal.prbirthdays"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="17" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.mogal.prbirthdays.DatesSelectionActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.mogal.prbirthdays.MainActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity android:name="com.mogal.prbirthdays.BirthdayUsersListActivity" />
+        <activity android:name="com.mogal.prbirthdays.LoginActivity" >
+            <intent-filter>
+                <action android:name="prbirthdays.intent.action.NEW_PERMISSIONS" />
+                <action android:name="prbirthdays.intent.action.LOGOUT" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
