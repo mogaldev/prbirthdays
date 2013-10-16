@@ -3,6 +3,7 @@
 	<name>prbirthdays</name>
 	<comment></comment>
 	<projects>
+		<project>timesquare_library</project>
 	</projects>
 	<buildSpec>
 	</buildSpec>
