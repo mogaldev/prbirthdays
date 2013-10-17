@@ -180,7 +180,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 					
 					final Session session = new Session(mFacebook, facebookId, name);
 					session.save(getApplicationContext());
-					///////////////////
+					//
 					// Save the new account in the DB
 					DataBaseWrapper.createOrUpdateAccount(getApplicationContext(),
 							facebookId, name, mFacebook.getAccessToken(),
