@@ -10,7 +10,9 @@ import android.widget.TextView;
 
 import com.mogal.prbirthdays.R;
 import com.mogal.prbirthdays.model.BirthdayUser;
+import com.mogal.prbirthdays.util.FontTypeFaceManager;
 import com.mogal.prbirthdays.util.ImageLoadingUtil;
+import com.mogal.prbirthdays.util.FontTypeFaceManager.CustomFonts;
 
 public class BirthdayUsersAdapter extends ArrayAdapter<BirthdayUser> {
 	private final Context context;
@@ -35,6 +37,12 @@ public class BirthdayUsersAdapter extends ArrayAdapter<BirthdayUser> {
 		ImageView imgProfilePic = (ImageView) rowView
 				.findViewById(R.id.imgProfilePic);
 
+		// change the fonts
+		FontTypeFaceManager ftfm = FontTypeFaceManager.getInstance(context);
+		ftfm.setFont(tvName, CustomFonts.RobotoLight);
+		ftfm.setFont(tvBirthday, CustomFonts.RobotoThin);
+		
+		// populate the values in the fields
 		BirthdayUser birthdayUser = values[position];
 
 		tvName.setText(birthdayUser.getName());

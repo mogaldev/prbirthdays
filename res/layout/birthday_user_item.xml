@@ -15,18 +15,6 @@
         android:src="@drawable/ic_launcher" />
 
     <TextView
-        android:id="@+id/tvUserName"
-        style="@style/ListTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/imgProfilePic"
-        android:layout_marginLeft="67dp"
-        android:layout_toRightOf="@+id/imgProfilePic"
-        android:text="MoGal Development"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@android:color/black" />
-
-    <TextView
         android:id="@+id/tvUserBirthday"
         style="@style/ListTextView"
         android:layout_width="wrap_content"
@@ -35,6 +23,19 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="17dp"
         android:text="22/11"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/tvUserName"
+        style="@style/ListTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/imgProfilePic"
+        android:paddingTop="5dp"
+        android:paddingLeft="10dp"
+        android:text="MoGal Development"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@android:color/black" />
 

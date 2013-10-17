@@ -17,6 +17,10 @@ import com.mogal.prbirthdays.facebook.Session;
 import com.mogal.prbirthdays.helpers.Constants;
 import com.mogal.prbirthdays.helpers.DatabaseHelper;
 
+
+// TODO: use this request me?fields=picture.type(small),name
+// Choose proper size: https://developers.facebook.com/docs/reference/api/using-pictures/#sizes
+
 @DatabaseTable(tableName = Account.TABLE_NAME)
 public class Account {
 
