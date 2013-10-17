@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_item_gradient"
+    android:background="@drawable/custom_btn_beige"
     android:orientation="vertical" >
 
     <Button
@@ -32,6 +32,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Next Activity"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnMoveToAccounts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Accounts"
         android:textStyle="bold" />
 
 </LinearLayout>

@@ -24,6 +24,7 @@
             android:label="@string/app_name" >
         </activity>
         <activity android:name="com.mogal.prbirthdays.BirthdayUsersListActivity" />
+         <activity android:name="com.mogal.prbirthdays.AccountsListActivity" />
         <activity android:name="com.mogal.prbirthdays.LoginActivity" >
             <intent-filter>
                 <action android:name="prbirthdays.intent.action.NEW_PERMISSIONS" />

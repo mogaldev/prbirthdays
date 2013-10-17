@@ -34,7 +34,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
 	private Button mLoginBtn, mLogoutBtn;
 	private TextView mMessageTv;
-
+	
 	public void onClick(View v) {
 		if (v == mLoginBtn) {
 			loginToFacebook();
@@ -82,11 +82,19 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 		mLoginBtn = (Button) findViewById(R.id.btn_login);
 		mLoginBtn.setOnClickListener(this);
 
-		mLogoutBtn = (Button) findViewById(R.id.btn_logout);
+		mLogoutBtn = (Button) findViewById(R.id.btn_logout);		
 		mLogoutBtn.setOnClickListener(this);
 
 		mMessageTv = (TextView) findViewById(R.id.tv_login_message);
 
+		((Button)findViewById(R.id.btnMoveToAccounts)).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(v.getContext(), AccountsListActivity.class));
+			}
+		});
+		
+		
 		((Button) findViewById(R.id.btnMoveNextActivity))
 				.setOnClickListener(new OnClickListener() {
 					@Override

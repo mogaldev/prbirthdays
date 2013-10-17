@@ -1,12 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <ListView
-        android:id="@+id/lstvBirthdayUsersList"
+    <com.mogal.prbirthdays.helpers.CardsLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-    </ListView>
+        android:layout_height="match_parent"
+        android:background="#e3e3e3"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/txtView"
+            style="@style/CardStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/hello_world"
+            tools:context=".MainActivity" />
+
+        <TextView
+            android:id="@+id/txtView"
+            style="@style/CardStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/hello_world"
+            tools:context=".MainActivity" />
+
+        <ListView
+            android:id="@+id/lstvBirthdayUsersList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+        </ListView>
+    </com.mogal.prbirthdays.helpers.CardsLayout>
 
 </RelativeLayout>

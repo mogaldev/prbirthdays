@@ -5,6 +5,7 @@ import java.util.HashMap;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class FontTypeFaceManager {
@@ -77,5 +78,9 @@ public class FontTypeFaceManager {
 	public void setFont(TextView tv, CustomFonts font) {
 		tv.setTypeface(fontsMap.get(font));
 	}
+	public void setFont(Button btn, CustomFonts font) {
+		btn.setTypeface(fontsMap.get(font));
+	}
+	
 
 }

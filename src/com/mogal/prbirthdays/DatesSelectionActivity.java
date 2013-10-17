@@ -15,6 +15,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.mogal.prbirthdays.facebook.RequestBuilder;
+import com.mogal.prbirthdays.util.FontTypeFaceManager;
+import com.mogal.prbirthdays.util.FontTypeFaceManager.CustomFonts;
 import com.squareup.timessquare.CalendarPickerView;
 import com.squareup.timessquare.CalendarPickerView.OnDateSelectedListener;
 import com.squareup.timessquare.CalendarPickerView.SelectionMode;
@@ -32,6 +34,9 @@ public class DatesSelectionActivity extends Activity {
 		calendarView = (CalendarPickerView) findViewById(R.id.calendarView);
 		tvDateRange = (TextView) findViewById(R.id.tvDateRange);
 		Button btnImport = (Button) findViewById(R.id.btnImportBirthdayUsers);
+		FontTypeFaceManager ftfm = FontTypeFaceManager.getInstance(this);
+		ftfm.setFont(tvDateRange, CustomFonts.RobotoThin);
+		ftfm.setFont(btnImport, CustomFonts.RobotoLight);
 
 		btnImport.setOnClickListener(new OnClickListener() {
 			@Override
@@ -43,7 +48,6 @@ public class DatesSelectionActivity extends Activity {
 
 		// Calendar View initialization
 		initCalendar();
-
 
 	}
 

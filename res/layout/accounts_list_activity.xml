@@ -1,0 +1,25 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e5e5e5"
+    android:orientation="vertical" >
+
+    <com.mogal.prbirthdays.helpers.CardsLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#e3e3e3"
+        android:orientation="vertical" >
+
+        <ListView
+            android:id="@+id/lstAccounts"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:divider="@null"
+            android:dividerHeight="0dp" >
+        </ListView>
+    </com.mogal.prbirthdays.helpers.CardsLayout>
+
+</LinearLayout>
