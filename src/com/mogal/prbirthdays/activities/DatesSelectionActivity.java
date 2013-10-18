@@ -1,4 +1,4 @@
-package com.mogal.prbirthdays;
+package com.mogal.prbirthdays.activities;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -14,9 +14,12 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.mogal.prbirthdays.R;
+import com.mogal.prbirthdays.R.id;
+import com.mogal.prbirthdays.R.layout;
 import com.mogal.prbirthdays.facebook.RequestBuilder;
-import com.mogal.prbirthdays.util.FontTypeFaceManager;
-import com.mogal.prbirthdays.util.FontTypeFaceManager.CustomFonts;
+import com.mogal.prbirthdays.utils.FontTypeFaceManager;
+import com.mogal.prbirthdays.utils.FontTypeFaceManager.CustomFonts;
 import com.squareup.timessquare.CalendarPickerView;
 import com.squareup.timessquare.CalendarPickerView.OnDateSelectedListener;
 import com.squareup.timessquare.CalendarPickerView.SelectionMode;

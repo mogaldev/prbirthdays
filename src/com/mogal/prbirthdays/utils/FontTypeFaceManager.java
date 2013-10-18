@@ -1,4 +1,4 @@
-package com.mogal.prbirthdays.util;
+package com.mogal.prbirthdays.utils;
 
 import java.util.HashMap;
 

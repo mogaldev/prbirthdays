@@ -1,4 +1,4 @@
-package com.mogal.prbirthdays;
+package com.mogal.prbirthdays.activities;
 
 import android.app.Activity;
 import android.content.Intent;

@@ -22,7 +22,7 @@ import com.mogal.prbirthdays.helpers.DatabaseHelper;
 // Choose proper size: https://developers.facebook.com/docs/reference/api/using-pictures/#sizes
 
 @DatabaseTable(tableName = Account.TABLE_NAME)
-public class Account {
+public class Account extends BaseModel{
 
 	private static final String TAG = Account.class.getName();
 	public static final String TABLE_NAME = "Accounts";

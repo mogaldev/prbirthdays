@@ -6,6 +6,7 @@ import org.json.JSONObject;
 
 import com.j256.ormlite.field.DatabaseField;
 
+@Deprecated
 public abstract class AbstractFacebookObject {
 
     public static final String FIELD_ID = "_id";

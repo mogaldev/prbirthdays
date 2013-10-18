@@ -1,4 +1,4 @@
-package com.mogal.prbirthdays;
+package com.mogal.prbirthdays.activities;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -22,6 +22,10 @@ import com.facebook.android.DialogError;
 import com.facebook.android.Facebook;
 import com.facebook.android.Facebook.DialogListener;
 import com.facebook.android.FacebookError;
+import com.mogal.prbirthdays.BuildConfig;
+import com.mogal.prbirthdays.R;
+import com.mogal.prbirthdays.R.id;
+import com.mogal.prbirthdays.R.layout;
 import com.mogal.prbirthdays.facebook.Session;
 import com.mogal.prbirthdays.helpers.Constants;
 import com.mogal.prbirthdays.helpers.DataBaseWrapper;

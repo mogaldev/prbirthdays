@@ -1,8 +1,5 @@
 package com.mogal.prbirthdays.facebook;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -13,16 +10,22 @@ import com.mogal.prbirthdays.model.BirthdayUser;
 
 public class ResponseParser {
 
-	public static List<BirthdayUser> getBirthdayUsers(String response) {
-		ArrayList<BirthdayUser> birthdayUsers = new ArrayList<BirthdayUser>();
+	/**
+	 * Birthday User Parsing
+	 */
+
+	public static BirthdayUser[] parseBirthdayUsersResponse(String response) {
+		BirthdayUser[] birthdayUsers = null;
 
 		try {
 			JSONObject jsonRoot = new JSONObject(response);
 			JSONArray jsonData = jsonRoot.getJSONArray("data");
 			int numOfUsers = jsonData.length();
 
+			birthdayUsers = new BirthdayUser[numOfUsers];
+
 			for (int i = 0; i < numOfUsers; i++) {
-				birthdayUsers.add(new BirthdayUser(jsonData.getJSONObject(i)));
+				birthdayUsers[i] = parseBirthdayUser(jsonData.getJSONObject(i));
 			}
 
 		} catch (JSONException e) {
@@ -32,4 +35,19 @@ public class ResponseParser {
 		return birthdayUsers;
 	}
 
+	private static BirthdayUser parseBirthdayUser(JSONObject jsonObj)
+			throws JSONException {
+		BirthdayUser birthdayUser = new BirthdayUser();
+
+		birthdayUser.setUid(jsonObj.getLong("uid"));
+		birthdayUser.setName(jsonObj.getString("name"));
+		birthdayUser.setBirthday(jsonObj.getString("anon"));// birthday_date
+		birthdayUser.setProfilePicUrl(jsonObj.getString("pic_square"));
+
+		return birthdayUser;
+	}
+
+	/**
+	 * End of Birthday User Parsing
+	 */
 }

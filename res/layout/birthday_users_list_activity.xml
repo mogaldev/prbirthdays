@@ -9,24 +9,7 @@
         android:layout_height="match_parent"
         android:background="#e3e3e3"
         android:orientation="vertical" >
-
-        <TextView
-            android:id="@+id/txtView"
-            style="@style/CardStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/hello_world"
-            tools:context=".MainActivity" />
-
-        <TextView
-            android:id="@+id/txtView"
-            style="@style/CardStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/hello_world"
-            tools:context=".MainActivity" />
-
-        <ListView
+        <ListView
             android:id="@+id/lstvBirthdayUsersList"
             android:layout_width="match_parent"
             android:layout_height="match_parent" >

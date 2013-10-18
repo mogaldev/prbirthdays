@@ -34,6 +34,7 @@
                 android:layout_marginRight="15dp"
                 android:layout_marginTop="20dp"
                 android:text="Moshe Beladev"
+                android:textSize="18sp"
                 android:textColor="@android:color/primary_text_light" />
 
             <TextView
@@ -42,6 +43,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="15dp"
                 android:text="Expire At: 01/02/2014"
+                android:textSize="15sp"
                 android:textColor="@android:color/primary_text_light" />
         </LinearLayout>
     </LinearLayout>
